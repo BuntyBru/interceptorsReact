@@ -1,20 +1,15 @@
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React from "react";
+//import { login } from "./utils/Auth";
+import { AuthenticationContext } from "./context/AuthenticationContext";
+import AuthComps from "./auth/AuthComps";
+import Unauth from "./auth/Unauth";
 
-function App() {
-  return (
-    <div className="App">
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            hey
-          </Route>
-          <Route path="/login">Login</Route>
-          <Route path="/dashboard">dashboard</Route>
-        </Switch>
-      </Router>
-    </div>
-  );
-}
+const App = React.memo(() => {
+  //login("divyanshu@strataprop.com", "admin123").then((res) => console.log(res));
+  const { user } = React.useContext(AuthenticationContext);
+
+  return user ? <AuthComps /> : <Unauth />;
+});
 
 export default App;
