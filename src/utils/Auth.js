@@ -12,10 +12,6 @@ const getUser = () => {
   my_app.defaults.headers.common["Authorization"] = "Bearer " + currUser.access;
   my_app.interceptors.response.use(
     (response) => {
-      console.log(
-        "hello from interceptopr",
-        my_app.defaults.headers.common["Authorization"]
-      );
       return response;
     },
     (error) => {
@@ -62,8 +58,8 @@ const getUser = () => {
             logout();
           });
       }
-      console.log("LOGOUT OUTSIDE");
-      logout();
+      // console.log("LOGOUT OUTSIDE");
+      //logout();
       return new Promise((resolve, reject) => {
         reject(error);
       });
